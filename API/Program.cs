@@ -28,6 +28,8 @@ builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection(
 
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 
+builder.Services.AddScoped<LogUserActivity>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -52,12 +54,14 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-/* if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseSwagger();
     app.UseSwaggerUI();
-} */
+}
+
+
 
 app.UseMiddleware<ExceptionMiddleware>();
 
