@@ -25,12 +25,10 @@ builder.Services.AddCors(options => {
 });
 
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
-
 builder.Services.AddScoped<IPhotoService, PhotoService>();
-
 builder.Services.AddScoped<LogUserActivity>();
-
 builder.Services.AddScoped<ILikesRepository, LikesRepository>();
+builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
