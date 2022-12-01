@@ -31,9 +31,8 @@ builder.Services.AddCors(options => {
 builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 builder.Services.AddScoped<IPhotoService, PhotoService>();
 builder.Services.AddScoped<LogUserActivity>();
-builder.Services.AddScoped<ILikesRepository, LikesRepository>();
-builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 builder.Services.AddSingleton<PresenceTracker>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddIdentityCore<AppUser>(opt => {
     opt.Password.RequireNonAlphanumeric = false;
@@ -75,7 +74,6 @@ builder.Services.AddAuthorization(opt =>
 });
 
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 builder.Services.AddSignalR();
